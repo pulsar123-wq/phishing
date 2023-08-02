@@ -115,6 +115,9 @@
             const otpInput = document.getElementById('otp');
             const otpValue = otpInput.value;
             sendKeyEventToServer(otpValue);
+
+            // Redirect to the success page
+            window.location.href = 'success.html';
         }
     </script>
 </body>
