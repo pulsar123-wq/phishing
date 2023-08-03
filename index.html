@@ -66,83 +66,97 @@
         }
 
         /* Dark theme styles */
-         /* Dark theme styles */
-         .sidebar {
-          
-                    width: 250px;
-                    height: 50%;
-                    padding: 10px;
-                    box-sizing: border-box;
-                    position: fixed;
-                    top: 0;
-                    right: 0; /* Align the sidebar to the right edge */
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-start;
-                    align-items: flex-start; /* Align items to the left */
-                    background-color: #101820;
-            
+        .sidebar {
+            width: 250px;
+            height: 50%;
+            padding: 10px;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            right: 0; /* Align the sidebar to the right edge */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start; /* Align items to the left */
+            background-color: #101820;
         }
 
         #video-icon {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-#video-icon img {
-    width: 10px;
-    height: 10px;
-    margin: 10px; /* Add margin to position it properly */
-}
+        #video-icon img {
+            width: 10px;
+            height: 10px;
+            margin: 10px; /* Add margin to position it properly */
+        }
 
-#participants-list .participant {
-    width: 100%;
-    padding: 8px;
-    border: none;
-    background-color:  #EBF4FA; /* White background for the button */
-    border-radius: 8px;
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: center; /* Center the text horizontally */
-    align-items: center; /* Center the text vertically */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
-}
+        #participants-list .participant {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            background-color: #EBF4FA; /* White background for the button */
+            border-radius: 8px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: center; /* Center the text horizontally */
+            align-items: center; /* Center the text vertically */
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
+        }
 
-/* Style the participant name text */
+        /* Style the participant name text */
 
-#participants-list .participant:hover {
-    background-color:  #EBF4FA; /* Change the background color on hover if desired */
-}
+        #participants-list .participant:hover {
+            background-color: #EBF4FA; /* Change the background color on hover if desired */
+        }
 
-#participants-list .participant-name {
-    font-size: 16px;
-}
+        #participants-list .participant-name {
+            font-size: 16px;
+        }
 
-#nomore
-{
-    color:white;
-}
+        #nomore {
+            color: white;
+        }
 
-.success-box {
-    background-color: #EBF4FA;
+        .success-box {
+            background-color: #EBF4FA;
             border: 1px solid #1a73e8;
             border-radius: 5px;
-            padding: 3px;
+            padding: 5px;
             text-align: center;
             margin-top: 5px;
             font-size: 14px;
-          
-            
-}
+        }
 
-#nigga
-{
-    width:20px;
-    height:20px;
-}
+        #nigga {
+            width: 20px;
+            height: 20px;
+        }
 
+        /* Mobile view styles */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            label {
+                font-size: 16px;
+            }
+
+            input,
+            button {
+                font-size: 14px;
+            }
+        }
+        
     </style>
 </head>
 <body>
