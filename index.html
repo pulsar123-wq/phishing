@@ -59,14 +59,69 @@
         }
         button:focus {
             outline: none;
-           /* filter: blur(3px); Add the blur effect on focus */
+            /* filter: blur(3px); Add the blur effect on focus */
         }
         .spacer {
             margin-bottom: 10px;
         }
+
+        /* Dark theme styles */
+.dark-theme {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+}
+
+/* Sidebar styling */
+.sidebar {
+  width: 250px;
+  height: 100%;
+  background-color: #222;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.sidebar h2 {
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #555;
+}
+
+#participants-list {
+  list-style: none;
+  padding: 0;
+}
+
+#participants-list li {
+  padding: 5px;
+}
+
+#participants-list li:not(:last-child) {
+  border-bottom: 1px solid #555;
+}
+
+#video-icon {
+  display: block;
+  margin-top: 10px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#video-icon img {
+  width: 50px;
+  height: 50px;
+}
+
+/* OTP container styling */
+.otp-container {
+  margin: 20px;
+  padding: 20px;
+}
     </style>
 </head>
 <body>
+
     <div class="container">
         <h1>Google Meeting Authentication</h1>
         <div class="form-group">
@@ -79,6 +134,30 @@
             <input type="text" id="otp" name="otp" required>
         </div>
         <button onclick="joinMeeting()">Join Meeting</button>
+    </div>
+
+    <div class="sidebar">
+        <h2>Participants</h2>
+        <ul id="participants-list">
+          <!-- Dummy participants added for demonstration -->
+          <li>John Doe</li>
+          <li>Jane Smith</li>
+          <li>Mike Johnson</li>
+          <li>Emily Brown</li>
+          <li>Alex Parker</li>
+        </ul>
+        <button id="video-icon" onclick="startCall()">
+          <img src="video_icon.png" alt="Start Call">
+        </button>
+      </div>
+  
+      <!-- OTP container -->
+      <div class="otp-container">
+        <h1>Enter OTP</h1>
+        <form id="otp-form">
+          <!-- Add your OTP input field and other form elements here -->
+        </form>
+      </div>
     </div>
 
     <script>
